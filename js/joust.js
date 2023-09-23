@@ -1,3 +1,5 @@
+"use-strict";
+
 const knight1 = {
   m: 4,
   ws: 5,
@@ -42,20 +44,30 @@ let wound = rollDie();
 let fall = rollDie();
 let round;
 
+let knight1Score = 0;
+let knight1Wounds = 2;
+let knight2Score = 0;
+let knight2Wounds = 2;
+
 if (hit >= 4) {
+  console.log("Hit!");
   if (lanceBreak >= 4) {
+    knight1Score++;
+    console.log("Broken lance!");
     if (wound >= 4) {
+      knight2Wounds--;
+      console.log("Knight 2 receives a wound!");
       if (fall >= 4) {
-        //end round
+        console.log("knight 2 unhorsed!");
       } else {
-        return;
+        console.log("Knight 2 fights to remain in his saddle.");
       }
     } else {
-      return;
+      console.log("Knight 2's armor saves him from injury.");
     }
   } else {
-    return;
+    console.log("Glancing blow.");
   }
 } else {
-  return;
+  console.log("Miss!");
 }
