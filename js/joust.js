@@ -49,25 +49,44 @@ let knight1Wounds = 2;
 let knight2Score = 0;
 let knight2Wounds = 2;
 
-if (hit >= 4) {
-  console.log("Hit!");
-  if (lanceBreak >= 4) {
-    knight1Score++;
-    console.log("Broken lance!");
-    if (wound >= 4) {
-      knight2Wounds--;
-      console.log("Knight 2 receives a wound!");
-      if (fall >= 4) {
-        console.log("knight 2 unhorsed!");
+const guyDeLaFayette = {
+  score: 0,
+  wounds: 2,
+  ahorse: true
+}
+const blackKnight = {
+  score: 0,
+  wounds: 2,
+  ahorse: true
+}
+
+function singleJoust(knight1, knight2) {
+
+  if (hit >= 4) {
+    console.log("Hit!");
+    if (lanceBreak >= 4) {
+      knight1.score++;
+      console.log("Broken lance!");
+      if (wound >= 4) {
+        knight2.wounds--;
+        console.log("Knight 2 receives a wound!");
+        if (fall >= 4) {
+          knight2.ahorse = false;
+          console.log("knight 2 unhorsed!");
+        } else {
+          console.log("Knight 2 fights to remain in his saddle.");
+        }
       } else {
-        console.log("Knight 2 fights to remain in his saddle.");
+        console.log("Knight 2's armor saves him from injury.");
       }
     } else {
-      console.log("Knight 2's armor saves him from injury.");
+      console.log("Glancing blow.");
     }
   } else {
-    console.log("Glancing blow.");
+    console.log("Miss!");
   }
-} else {
-  console.log("Miss!");
 }
+
+singleJoust(guyDeLaFayette, blackKnight);
+console.log(guyDeLaFayette);
+console.log(blackKnight);
