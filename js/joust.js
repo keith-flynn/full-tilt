@@ -31,36 +31,27 @@ function rollDie() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
-`
-1 hit/miss
-2 break lance/not
-3 wound/not
-4 fall/not
-`;
+let round = 1;
 
-let hit = rollDie();
-let lanceBreak = rollDie();
-let wound = rollDie();
-let fall = rollDie();
-let round;
-
-let knight1Score = 0;
-let knight1Wounds = 2;
-let knight2Score = 0;
-let knight2Wounds = 2;
-
+// Our knights: 
 const guyDeLaFayette = {
+  name: "Guy de LaFayette",
   score: 0,
   wounds: 2,
   ahorse: true
 }
 const blackKnight = {
+  name: "The Black Knight",
   score: 0,
   wounds: 2,
   ahorse: true
 }
 
 function singleJoust(knight1, knight2) {
+  let hit = rollDie();
+  let lanceBreak = rollDie();
+  let wound = rollDie();
+  let fall = rollDie();
 
   if (hit >= 4) {
     console.log("Hit!");
@@ -69,15 +60,15 @@ function singleJoust(knight1, knight2) {
       console.log("Broken lance!");
       if (wound >= 4) {
         knight2.wounds--;
-        console.log("Knight 2 receives a wound!");
+        console.log(`${knight2.name} receives a wound!`);
         if (fall >= 4) {
           knight2.ahorse = false;
-          console.log("knight 2 unhorsed!");
+          console.log(`${knight2.name} unhorsed!`);
         } else {
-          console.log("Knight 2 fights to remain in his saddle.");
+          console.log(`${knight2.name} fights to remain in his saddle.`);
         }
       } else {
-        console.log("Knight 2's armor saves him from injury.");
+        console.log(`${knight2.name}'s armor saves him from injury.`);
       }
     } else {
       console.log("Glancing blow.");
@@ -87,6 +78,15 @@ function singleJoust(knight1, knight2) {
   }
 }
 
-singleJoust(guyDeLaFayette, blackKnight);
-console.log(guyDeLaFayette);
-console.log(blackKnight);
+function oneRound(knight1, knight2) {
+  console.log(`${knight1.name}'s turn:`);
+  singleJoust(knight1, knight2);
+  console.log(`${knight2.name}'s turn:`);
+  singleJoust(knight2, knight1);
+  console.log(guyDeLaFayette);
+  console.log(blackKnight);
+  round++;
+}
+
+let one = oneRound(guyDeLaFayette, blackKnight);
+console.log(one);
