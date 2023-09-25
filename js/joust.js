@@ -61,12 +61,12 @@ function singleCombat(knight1, knight2) {
         console.log(`${knight2.name} receives a wound!`);
         if (fall >= 4) {
           knight2.ahorse = false;
-          console.log(`${knight2.name} unhorsed!`);
+          console.log(`${knight2.name} is unhorsed!`);
         } else {
-          console.log(`${knight2.name} fights to remain in his saddle.`);
+          console.log(`${knight2.name} fights to remain in their saddle.`);
         }
       } else {
-        console.log(`${knight2.name}'s armor saves him from injury.`);
+        console.log(`${knight2.name}'s armor saves them from injury.`);
       }
     } else {
       console.log("Glancing blow.");
@@ -85,16 +85,18 @@ function onePass(knight1, knight2) {
   if (knight2.ahorse === false) {
     console.log(`${knight1.name} wins!`);
   } else if (knight2.wounds === 0) {
-    console.log(`${knight2.name} is hurt. ${knight1.name} wins!`)
+    console.log(`${knight2.name} is hurt and cannot continue. ${knight1.name} wins!`)
   } else {
     console.log(`${knight2.name}'s turn:`);
     singleCombat(knight2, knight1);
   }
 
-  if (knight1.ahorse === false) {
+  if (knight2.ahorse === false || knight2.wounds === 0) {
+    return;
+  } else if (knight1.ahorse === false) {
     console.log(`${knight2.name} wins!`);
   } else if (knight1.wounds === 0) {
-    console.log(`${knight1.name} is hurt. ${knight2.name} wins!`)
+    console.log(`${knight1.name} is hurt and cannot continue. ${knight2.name} wins!`)
   } else {
     roundNumber++;
   }
@@ -106,8 +108,15 @@ function onePass(knight1, knight2) {
 
 function singleJoust(knight1, knight2) {
   while (roundNumber <= 3) {
+    if (knight1.wounds > 0 && knight2.wounds > 0 && knight1.ahorse && knight2.ahorse) {
       onePass(knight1, knight2);
+    } else {
+      return;
+    }
   }
+
+
+
 }
 
 /*   if (knight1.score > knight2.score) {
