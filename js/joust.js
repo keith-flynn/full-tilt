@@ -31,8 +31,6 @@ function rollDie() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
-let roundNumber = 1;
-
 // Our knights: 
 const guyDeLaFayette = {
   name: "Guy de LaFayette",
@@ -79,25 +77,48 @@ function singleCombat(knight1, knight2) {
 }
 
 function onePass(knight1, knight2) {
-  while (knight1.ahorse === true && knight2.ahorse === true && roundNumber <= 3) {
-    console.log(`Round ${roundNumber}!`)
-    console.log(`${knight1.name}'s turn:`);
-    singleCombat(knight1, knight2);
-    console.log(`${knight2.name}'s turn:`);
-    singleCombat(knight2, knight1);
-    console.log(guyDeLaFayette);
-    console.log(blackKnight);
-    roundNumber++;
-  }
+  console.log(`The herald cries, Round ${roundNumber}!`)
+
+  console.log(`${knight1.name}'s turn:`);
+  singleCombat(knight1, knight2);
 
   if (knight2.ahorse === false) {
     console.log(`${knight1.name} wins!`);
-  } else if (knight1.ahorse === false) {
-    console.log(`${knight2.name} wins!`);
+  } else if (knight2.wounds === 0) {
+    console.log(`${knight2.name} is hurt. ${knight1.name} wins!`)
   } else {
-    
-    console.log("placeholder");
+    console.log(`${knight2.name}'s turn:`);
+    singleCombat(knight2, knight1);
+  }
+
+  if (knight1.ahorse === false) {
+    console.log(`${knight2.name} wins!`);
+  } else if (knight1.wounds === 0) {
+    console.log(`${knight1.name} is hurt. ${knight2.name} wins!`)
+  } else {
+    roundNumber++;
+  }
+
+  console.log(guyDeLaFayette);
+  console.log(blackKnight);
+}
+
+
+function singleJoust(knight1, knight2) {
+  while (roundNumber <= 3) {
+      onePass(knight1, knight2);
   }
 }
 
-let one = onePass(guyDeLaFayette, blackKnight);
+/*   if (knight1.score > knight2.score) {
+    console.log(`${knight1.name} is victorious!`)
+  } else if (knight2.score > knight1.score) {
+    console.log(`${knight2.name} is victorious!`)
+  } else {
+    console.log("Tie?")
+  } */
+
+
+let roundNumber = 1;
+
+let one = singleJoust(guyDeLaFayette, blackKnight);
