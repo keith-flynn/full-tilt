@@ -1,31 +1,5 @@
 "use-strict";
 
-const knight1 = {
-  m: 4,
-  ws: 5,
-  bs: 5,
-  s: 4,
-  t: 4,
-  w: 2,
-  i: 5,
-  a: 3,
-  ld: 8,
-  save: "4+",
-};
-
-const knight2 = {
-  movement: 4,
-  weaponSkill: 5,
-  ballisticSkill: 5,
-  strength: 4,
-  toughness: 4,
-  wounds: 2,
-  initiative: 5,
-  attacks: 3,
-  leadership: 8,
-  armorSave: "4+",
-};
-
 // Roll
 function rollDie() {
   return Math.floor(Math.random() * 6) + 1;
@@ -36,13 +10,15 @@ const guyDeLaFayette = {
   name: "Guy de LaFayette",
   score: 0,
   wounds: 2,
-  ahorse: true
+  ahorse: true,
+  isVictorious: false
 }
 const blackKnight = {
   name: "The Black Knight",
   score: 0,
   wounds: 2,
-  ahorse: true
+  ahorse: true,
+  isVictorious: false
 }
 
 function singleCombat(knight1, knight2) {
@@ -84,8 +60,10 @@ function onePass(knight1, knight2) {
 
   if (knight2.ahorse === false) {
     console.log(`${knight1.name} wins!`);
+    knight1.isVictorious = true;
   } else if (knight2.wounds === 0) {
-    console.log(`${knight2.name} is hurt and cannot continue. ${knight1.name} wins!`)
+    console.log(`${knight2.name} is hurt and cannot continue. ${knight1.name} wins!`);
+    knight1.isVictorious = true;
   } else {
     console.log(`${knight2.name}'s turn:`);
     singleCombat(knight2, knight1);
@@ -95,8 +73,10 @@ function onePass(knight1, knight2) {
     return;
   } else if (knight1.ahorse === false) {
     console.log(`${knight2.name} wins!`);
+    knight2.isVictorious = true;
   } else if (knight1.wounds === 0) {
-    console.log(`${knight1.name} is hurt and cannot continue. ${knight2.name} wins!`)
+    console.log(`${knight1.name} is hurt and cannot continue. ${knight2.name} wins!`);
+    knight2.isVictorious = true;
   } else {
     roundNumber++;
   }
@@ -105,10 +85,9 @@ function onePass(knight1, knight2) {
   console.log(blackKnight);
 }
 
-
 function singleJoust(knight1, knight2) {
   while (roundNumber <= 3) {
-    if (knight1.wounds > 0 && knight2.wounds > 0 && knight1.ahorse && knight2.ahorse) {
+    if (!knight1.isVictorious && !knight2.isVictorious) {
       onePass(knight1, knight2);
     } else {
       return;
@@ -116,17 +95,17 @@ function singleJoust(knight1, knight2) {
   }
 
 
+  while (!knight1.isVictorious && !knight2.isVictorious) {
 
+    if (!knight1.isVictorious && !knight2.isVictorious && knight1.score > knight2.score) {
+      console.log(`${knight1.name} wins the tilt with ${knight1.score} broken lance(s)!`);
+      knight1.isVictorious = true;
+    } else if (!knight1.isVictorious && !knight2.isVictorious && knight2.score > knight1.score) {
+      console.log(`${knight2.name} wins the tilt with ${knight2.score} broken lance(s)!`);
+      knight2.isVictorious = true;
+    } else onePass(knight1, knight2);
+  }
 }
-
-/*   if (knight1.score > knight2.score) {
-    console.log(`${knight1.name} is victorious!`)
-  } else if (knight2.score > knight1.score) {
-    console.log(`${knight2.name} is victorious!`)
-  } else {
-    console.log("Tie?")
-  } */
-
 
 let roundNumber = 1;
 
