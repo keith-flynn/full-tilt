@@ -97,10 +97,10 @@ function singleJoust(knight1, knight2) {
 
   while (!knight1.isVictorious && !knight2.isVictorious) {
 
-    if (!knight1.isVictorious && !knight2.isVictorious && knight1.score > knight2.score) {
+    if (knight1.score > knight2.score) {
       console.log(`${knight1.name} wins the tilt with ${knight1.score} broken lance(s)!`);
       knight1.isVictorious = true;
-    } else if (!knight1.isVictorious && !knight2.isVictorious && knight2.score > knight1.score) {
+    } else if (knight2.score > knight1.score) {
       console.log(`${knight2.name} wins the tilt with ${knight2.score} broken lance(s)!`);
       knight2.isVictorious = true;
     } else onePass(knight1, knight2);
