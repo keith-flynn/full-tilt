@@ -35,27 +35,27 @@ function singleCombat(knight1, knight2) {
   let fall = rollDie();
 
   if (hit >= 4) {
-    displayMessage("Hit!");
+    displayMessage(`Hit! (${hit})`);
     if (lanceBreak >= 4) {
       knight1.score++;
-      displayMessage("Broken lance!");
+      displayMessage(`Broken lance! (${lanceBreak})`);
       if (wound >= 4) {
         knight2.wounds--;
-        displayMessage(`${knight2.name} receives a wound!`);
+        displayMessage(`${knight2.name} receives a wound! (${wound})`);
         if (fall >= 4) {
           knight2.ahorse = false;
-          displayMessage(`${knight2.name} is unhorsed!`);
+          displayMessage(`${knight2.name} is unhorsed! (${fall})`);
         } else {
-          displayMessage(`${knight2.name} fights to remain in their saddle.`);
+          displayMessage(`${knight2.name} fights to remain in their saddle. (${fall})`);
         }
       } else {
-        displayMessage(`${knight2.name}'s armor saves them from injury.`);
+        displayMessage(`${knight2.name}'s armor saves them from injury. (${wound})`);
       }
     } else {
-      displayMessage("Glancing blow.");
+      displayMessage(`Glancing blow. (${lanceBreak})`);
     }
   } else {
-    displayMessage("Miss!");
+    displayMessage(`Miss! (${hit})`);
   }
 }
 
@@ -106,10 +106,12 @@ function singleJoust(knight1, knight2) {
   while (!knight1.isVictorious && !knight2.isVictorious) {
 
     if (knight1.score > knight2.score) {
-      displayMessage(`${knight1.name} wins the tilt with ${knight1.score} broken lance(s)!`);
+      const lancePlural = knight1.score === 1 ? "lance" : "lances";
+      displayMessage(`${knight1.name} wins the tilt with ${knight1.score} broken ${lancePlural}!`);
       knight1.isVictorious = true;
     } else if (knight2.score > knight1.score) {
-      displayMessage(`${knight2.name} wins the tilt with ${knight2.score} broken lance(s)!`);
+      const lancePlural = knight2.score === 1 ? "lance" : "lances";
+      displayMessage(`${knight2.name} wins the tilt with ${knight2.score} broken ${lancePlural}!`);
       knight2.isVictorious = true;
     } else onePass(knight1, knight2);
   }
@@ -118,8 +120,3 @@ function singleJoust(knight1, knight2) {
 let roundNumber = 1;
 
 let one = singleJoust(guyDeLafayette, blackKnight);
-
-// Append to main in DOM
-//const para = document.createElement("p");
-//para.innerText = roll;/
-//document.getElementById("main").appendChild(para);
