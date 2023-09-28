@@ -6,8 +6,8 @@ function rollDie() {
 }
 
 // Our knights: 
-const guyDeLaFayette = {
-  name: "Guy de LaFayette",
+const guyDeLafayette = {
+  name: "Guy de Lafayette",
   score: 0,
   wounds: 2,
   ahorse: true,
@@ -81,7 +81,7 @@ function onePass(knight1, knight2) {
     roundNumber++;
   }
 
-  console.log(guyDeLaFayette);
+  console.log(guyDeLafayette);
   console.log(blackKnight);
 }
 
@@ -109,4 +109,9 @@ function singleJoust(knight1, knight2) {
 
 let roundNumber = 1;
 
-let one = singleJoust(guyDeLaFayette, blackKnight);
+let one = singleJoust(guyDeLafayette, blackKnight);
+
+// Append to main in DOM
+const para = document.createElement("p");
+para.innerText = roll;
+document.getElementById("main").appendChild(para);
