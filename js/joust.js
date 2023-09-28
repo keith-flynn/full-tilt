@@ -12,7 +12,7 @@ function displayMessage(message) {
   document.getElementById("main").appendChild(para);
 }
 
-// Our knights: 
+// Our knight objects:
 const guyDeLafayette = {
   name: "Guy de Lafayette",
   score: 0,
@@ -28,6 +28,7 @@ const blackKnight = {
   isVictorious: false
 }
 
+// Smallest possible unit; one half of a round of combat
 function singleCombat(knight1, knight2) {
   let hit = rollDie();
   let lanceBreak = rollDie();
@@ -59,6 +60,7 @@ function singleCombat(knight1, knight2) {
   }
 }
 
+// One full pass where each knight settles combat with their opponnent
 function onePass(knight1, knight2) {
   displayMessage(`The herald cries, Round ${roundNumber}!`)
 
@@ -93,6 +95,7 @@ function onePass(knight1, knight2) {
   displayMessage(`${blackKnight.name}, Score: ${blackKnight.score}, Hits Remaining: ${blackKnight.wounds}`);
 }
 
+// One full tilt: best of three - then sudden death
 function singleJoust(knight1, knight2) {
   while (roundNumber <= 3) {
     if (!knight1.isVictorious && !knight2.isVictorious) {
@@ -102,7 +105,7 @@ function singleJoust(knight1, knight2) {
     }
   }
 
-
+  // Begin sudden death rounds
   while (!knight1.isVictorious && !knight2.isVictorious) {
 
     if (knight1.score > knight2.score) {
@@ -116,7 +119,6 @@ function singleJoust(knight1, knight2) {
     } else onePass(knight1, knight2);
   }
 }
-
 let roundNumber = 1;
 
-let one = singleJoust(guyDeLafayette, blackKnight);
+let oneFullTilt = singleJoust(guyDeLafayette, blackKnight);
