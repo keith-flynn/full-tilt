@@ -148,3 +148,55 @@ let one = singleJoust(guyDeLafayette, blackKnight);
 //para.innerText = roll;
 //document.getElementById("main").appendChild(para);
 //let appendDOM = document.getElementById("main").appendChild(para);
+
+/*
+function singleCombat(knight1, knight2) {
+  let hit = rollDie();
+  let lanceBreak = rollDie();
+  let wound = rollDie();
+  let fall = rollDie();
+
+  if (hit >= 4) {
+    const hitPara = document.createElement("p");
+    hitPara.innerText = "Hit!";
+    document.getElementById("main").appendChild(hitPara);
+    
+    if (lanceBreak >= 4) {
+      knight1.score++;
+      const lanceBreakPara = document.createElement("p");
+      lanceBreakPara.innerText = "Broken lance!";
+      document.getElementById("main").appendChild(lanceBreakPara);
+      
+      if (wound >= 4) {
+        knight2.wounds--;
+        const woundPara = document.createElement("p");
+        woundPara.innerText = `${knight2.name} receives a wound!`;
+        document.getElementById("main").appendChild(woundPara);
+        
+        if (fall >= 4) {
+          knight2.ahorse = false;
+          const fallPara = document.createElement("p");
+          fallPara.innerText = `${knight2.name} is unhorsed!`;
+          document.getElementById("main").appendChild(fallPara);
+        } else {
+          const remainPara = document.createElement("p");
+          remainPara.innerText = `${knight2.name} fights to remain in their saddle.`;
+          document.getElementById("main").appendChild(remainPara);
+        }
+      } else {
+        const armorPara = document.createElement("p");
+        armorPara.innerText = `${knight2.name}'s armor saves them from injury.`;
+        document.getElementById("main").appendChild(armorPara);
+      }
+    } else {
+      const glancingPara = document.createElement("p");
+      glancingPara.innerText = "Glancing blow.";
+      document.getElementById("main").appendChild(glancingPara);
+    }
+  } else {
+    const missPara = document.createElement("p");
+    missPara.innerText = "Miss!";
+    document.getElementById("main").appendChild(missPara);
+  }
+}
+*/

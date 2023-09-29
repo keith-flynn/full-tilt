@@ -119,6 +119,7 @@ function singleJoust(knight1, knight2) {
     } else onePass(knight1, knight2);
   }
 }
+
 let roundNumber = 1;
 
 let oneFullTilt = singleJoust(guyDeLafayette, blackKnight);
