@@ -13,7 +13,9 @@ With each pass, both knights will roll their attacks. You roll a six-sided die: 
 3) The lance-shattering hit hurts the opposing knight or not
 4) The opposing knight remaining in their saddle or falls
 
-The joust commences for three rounds. If nobody is unhorsed or too injured to continue, the knight with the most broken lances wins. If there is no victor, rounds continue in sudden death until the joust is resolved.
+The joust commences for three rounds. Unless one of our knights is unhorsed or too injured to continue, the knight with the most broken lances wins. If there is no victor, rounds continue in sudden death until the joust is resolved.
+
+__*Our prototype combatants are Guy de Lafayette and The Black Knight. Behold their struggle as they clash in thrilling single combat!*__
 
 ---
 
